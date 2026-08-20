@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Choix 9</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Cairo", Arial, sans-serif;
+            background:
+                radial-gradient(circle at top, #4c1d95 0%, transparent 35%),
+                linear-gradient(135deg, #050816, #111827, #1e3a8a);
+            color: white;
+            text-align: center;
+        }
+
+
+        /* =========================
+           واجهة البداية
+        ========================= */
+
+        #welcome {
+            min-height: 100vh;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            padding: 25px;
+
+            background:
+                radial-gradient(circle at 30% 30%, #a855f7 0%, transparent 25%),
+                radial-gradient(circle at 70% 70%, #2563eb 0%, transparent 25%),
+                linear-gradient(135deg, #030712, #111827);
+
+            animation: welcomeFade 1s ease;
+        }
+
+        .logo {
+            font-size: clamp(55px, 15vw, 110px);
+            font-weight: 800;
+            margin: 0 0 20px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #f0abfc,
+                    #60a5fa,
+                    #fbbf24
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            filter:
+                drop-shadow(0 0 15px rgba(168, 85, 247, 0.6));
+
+            animation: logoEnter 1.5s ease;
+        }
+
+        .welcome-text {
+            font-size: clamp(18px, 5vw, 27px);
+            font-weight: 600;
+            margin-bottom: 30px;
+
+            animation: textEnter 1.5s ease 0.3s both;
+        }
+
+        .enter-btn {
+            border: none;
+
+            padding: 16px 35px;
+
+            border-radius: 15px;
+
+            color: white;
+
+            font-family: inherit;
+            font-size: 18px;
+            font-weight: 700;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #a855f7,
+                    #2563eb
+                );
+
+            box-shadow:
+                0 10px 30px rgba(37, 99, 235, 0.5);
+
+            cursor: pointer;
+
+            animation: buttonEnter 1.5s ease 0.6s both;
+
+            transition: 0.3s;
+        }
+
+        .enter-btn:hover {
+            transform: scale(1.07);
+        }
+
+
+        /* =========================
+           Animation البداية
+        ========================= */
+
+        @keyframes welcomeFade {
+
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+
+        }
+
+        @keyframes logoEnter {
+
+            from {
+                opacity: 0;
+                transform: scale(0.3) rotate(-15deg);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) rotate(0);
+            }
+
+        }
+
+        @keyframes textEnter {
+
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+        @keyframes buttonEnter {
+
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        /* =========================
+           شاشة القنبلة
+        ========================= */
+
+        #explosion {
+
+            display: none;
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 99999;
+
+            background:
+                radial-gradient(
+                    circle,
+                    #4c1d95,
+                    #050816 70%
+                );
+
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+        }
+
+        .bomb {
+
+            font-size: 90px;
+
+            animation:
+                bombDrop 1s ease forwards;
+        }
+
+        .boom {
+
+            position: absolute;
+
+            font-size: 150px;
+
+            opacity: 0;
+
+            transform: scale(0);
+        }
+
+        .boom.active {
+
+            animation:
+                boomAnimation 0.9s ease forwards;
+        }
+
+        @keyframes bombDrop {
+
+            0% {
+                transform:
+                    translateY(-400px)
+                    rotate(-35deg);
+
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            75% {
+                transform:
+                    translateY(30px)
+                    rotate(15deg);
+            }
+
+            100% {
+                transform:
+                    translateY(0)
+                    rotate(0);
+            }
+
+        }
+
+        @keyframes boomAnimation {
+
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+
+            25% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            55% {
+                opacity: 1;
+                transform: scale(2);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(4);
+            }
+
+        }
+
+
+        /* =========================
+           الموقع الرئيسي
+        ========================= */
+
+        #site {
+
+            display: none;
+
+            animation:
+                siteEnter 1s ease;
+        }
+
+        @keyframes siteEnter {
+
+            from {
+                opacity: 0;
+                transform: scale(1.08);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+        }
+
+
+        /* =========================
+           MENU
+        ========================= */
+
+        nav {
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            padding: 12px 5px;
+
+            background:
+                rgba(5, 8, 22, 0.95);
+
+            backdrop-filter: blur(10px);
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.15);
+        }
+
+        nav a {
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 8px 14px;
+
+            margin: 4px;
+
+            border:
+                1px solid rgba(255,255,255,0.3);
+
+            border-radius: 12px;
+
+            font-size: 14px;
+
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+
+            background: #a855f7;
+
+            border-color: #a855f7;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           الأقسام
+        ========================= */
+
+        section {
+
+            padding: 25px 10px;
+
+            scroll-margin-top: 80px;
+        }
+
+        .box {
+
+            width: 100%;
+
+            max-width: 1000px;
+
+            margin: 20px auto;
+
+            padding: 25px 15px;
+
+            background:
+                rgba(255,255,255,0.08);
+
+            border:
+                1px solid rgba(255,255,255,0.12);
+
+            border-radius: 25px;
+
+            backdrop-filter: blur(10px);
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,0.25);
+        }
+
+
+        /* =========================
+           الرئيسية
+        ========================= */
+
+        .hero {
+
+            text-align: center;
+        }
+
+        .hero h1 {
+
+            font-size:
+                clamp(30px, 8vw, 55px);
+
+            margin: 10px 0;
+        }
+
+        .hero p {
+
+            font-size: 18px;
+        }
+
+
+        /* =========================
+           الخدمات
+        ========================= */
+
+        .card {
+
+            background: white;
+
+            color: #111827;
+
+            padding: 20px;
+
+            margin: 18px auto;
+
+            max-width: 700px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 8px 20px rgba(0,0,0,0.25);
+
+            transition: 0.3s;
+        }
+
+        .card:hover {
+
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+
+            width: 100%;
+
+            height: 260px;
+
+            object-fit: cover;
+
+            border-radius: 15px;
+
+            display: block;
+
+            margin-bottom: 15px;
+        }
+
+        .card h2 {
+
+            margin-top: 10px;
+        }
+
+        .card p {
+
+            font-size: 17px;
+
+            line-height: 1.8;
+        }
+
+        .card button {
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #7e22ce,
+                    #2563eb
+                );
+
+            color: white;
+
+            border: none;
+
+            padding: 12px 25px;
+
+            border-radius: 10px;
+
+            font-family: inherit;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .card button:hover {
+
+            transform: scale(1.05);
+        }
+
+
+        /* =========================
+           WhatsApp
+        ========================= */
+
+        .phone {
+
+            color: #16a34a;
+
+            font-size: 23px;
+
+            font-weight: 800;
+
+            direction: ltr;
+
+            display: inline-block;
+
+            text-decoration: none;
+
+            transition: 0.3s;
+        }
+
+        .phone:hover {
+
+            transform: scale(1.08);
+        }
+
+
+        /* =========================
+           الهاتف
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            nav a {
+
+                font-size: 12px;
+
+                padding: 7px 10px;
+            }
+
+            .box {
+
+                padding:
+                    20px 10px;
+
+                border-radius: 20px;
+            }
+
+            .product-image {
+
+                height: 210px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ==================================
+         واجهة Choix 9
+    ================================== -->
+
+    <div id="welcome">
+
+        <h1 class="logo">
+            Choix 9
+        </h1>
+
+        <div class="welcome-text">
+            لمعرفة المزيد إضغط هنا 👇
+        </div>
+
+        <button
+            class="enter-btn"
+            onclick="enterSite()"
+        >
+            إضغط هنا 🚀
+        </button>
+
+    </div>
+
+
+    <!-- ==================================
+         شاشة القنبلة
+    ================================== -->
+
+    <div id="explosion">
+
+        <div class="bomb">
+            💣
+        </div>
+
+        <div
+            class="boom"
+            id="boom"
+        >
+            💥
+        </div>
+
+    </div>
+
+
+    <!-- ==================================
+         الموقع الرئيسي
+    ================================== -->
+
+    <div id="site">
+
+
+        <!-- MENU -->
+
+        <nav>
+
+            <a href="#home">
+                🏠 الرئيسية
+            </a>
+
+            <a href="#services">
+                ⭐ الخدمات
+            </a>
+
+            <a href="#about">
+                ℹ️ علينا
+            </a>
+
+            <a href="#contact">
+                📞 تواصل
+            </a>
+
+        </nav>
+
+
+        <!-- الرئيسية -->
+
+        <section id="home">
+
+            <div class="box hero">
+
+                <h1>
+                    🔥 مرحبا بكم في Choix 9
+                </h1>
+
+                <p>
+                    أهلاً وسهلاً بكم في موقعنا 🚀
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- الخدمات -->
+
+        <section id="services">
+
+            <div class="box">
+
+                <h1>
+                    ⭐ الخدمات
+                </h1>
+
+
+                <!-- الخدمة الأولى -->
+
+                <div class="card">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=1000&auto=format&fit=crop"
+                        alt="منتجات الماكياج"
+                        class="product-image"
+                    >
+
+                    <h2>
+                        💄 الخدمة الأولى
+                    </h2>
+
+                    <p>
+                        منتجات ماكياج وعناية أنيقة ومميزة.
+                    </p>
+
+                    <button
+                        onclick="serviceOne()"
+                    >
+                        المزيد
+                    </button>
+
+                </div>
+
+
+                <!-- الخدمة الثانية -->
+
+                <div class="card">
+
+                    <h2>
+                        📞 الخدمة الثانية
+                    </h2>
+
+                    <p>
+                        للتواصل
+                    </p>
+
+                    <a
+                        href="https://wa.me/212715669145"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="phone"
+                    >
+                        0715669145
+                    </a>
+
+                    <p>
+                        إضغط على الرقم للتواصل معنا عبر WhatsApp 💬
+                    </p>
+
+                </div>
+
+
+                <!-- الخدمة الثالثة -->
+
+                <div class="card">
+
+                    <h2>
+                        ⭐ الخدمة الثالثة
+                    </h2>
+
+                    <p>
+                        منتجات أصلية عالية الجودة
+                    </p>
+
+                    <button
+                        onclick="serviceThree()"
+                    >
+                        المزيد
+                    </button>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- علينا -->
+
+        <section id="about">
+
+            <div class="box">
+
+                <h1>
+                    ℹ️ علينا
+                </h1>
+
+                <p>
+                    هادا موقع Choix 9 🚀
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- التواصل -->
+
+        <section id="contact">
+
+            <div class="box">
+
+                <h1>
+                    📞 تواصل
+                </h1>
+
+                <p>
+                    للتواصل معنا مباشرة 😊
+                </p>
+
+                <a
+                    href="https://wa.me/212715669145"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="phone"
+                >
+                    0715669145
+                </a>
+
+            </div>
+
+        </section>
+
+
+    </div>
+
+
+    <!-- ==================================
+         JavaScript
+    ================================== -->
+
+    <script>
+
+        function enterSite() {
+
+            /* نخبيو الواجهة */
+
+            document.getElementById("welcome").style.display = "none";
+
+
+            /* نطلعو القنبلة */
+
+            const explosion =
+                document.getElementById("explosion");
+
+            const bomb =
+                document.querySelector(".bomb");
+
+            const boom =
+                document.getElementById("boom");
+
+
+            explosion.style.display = "flex";
+
+
+            /* القنبلة كتطيح */
+
+            bomb.style.animation =
+                "bombDrop 1s ease forwards";
+
+
+            /* الانفجار */
+
+            setTimeout(function() {
+
+                boom.classList.add("active");
+
+            }, 1000);
+
+
+            /* من بعد الانفجار كيدخل الموقع */
+
+            setTimeout(function() {
+
+                explosion.style.display = "none";
+
+                document.getElementById("site").style.display = "block";
+
+                window.scrollTo(0, 0);
+
+            }, 1900);
+
+        }
+
+
+        function serviceOne() {
+
+            alert(
+                "مرحبا بك في منتجات الماكياج 💄🔥"
+            );
+
+        }
+
+
+        function serviceThree() {
+
+            alert(
+                "منتجات أصلية عالية الجودة ⭐"
+            );
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
